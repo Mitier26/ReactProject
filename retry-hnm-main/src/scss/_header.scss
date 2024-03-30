@@ -1,0 +1,56 @@
+.header{
+    margin: 0 auto;
+    display: flex;
+    flex-flow: column;
+
+    &-top{
+        display: flex;
+        justify-content: flex-end;
+        padding: 20px;
+        box-sizing: border-box;
+
+        &-btn{
+            display: none;
+        }
+
+        &-login{
+            display: flex;
+            cursor: pointer;
+
+            i{
+                font-size: 20px;
+            }
+            div{
+                font-size: 16px;
+            }
+        }
+    }
+    
+    &-logo{
+        display: flex;
+        justify-content: center;
+        padding: 0 0 40px 0; 
+
+        img{
+            width: 100px;
+        }
+    }
+}
+
+@include mobile{
+    .header-top{
+        justify-content: space-between;
+        align-items: center;
+
+        &-btn{
+            font-size: 20px;
+            font-weight: bold;
+            display: block;
+            cursor: pointer;
+
+            i{
+                vertical-align: top;
+            }
+        }
+    }
+}

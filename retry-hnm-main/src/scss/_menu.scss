@@ -1,0 +1,79 @@
+.menu{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    //background-color: aquamarine;
+
+    &-list{
+        //background-color: lightgray;
+        display: flex;
+        justify-content: center;
+        
+        li{
+            padding: 0 10px; 
+            font-size: 18px;
+            font-weight: 500;  
+        }
+    }
+
+    &-search{
+        height: 28px;
+        position: absolute;
+        right: 30px;
+        padding: 0 20px 0 0;
+        border: 0;
+        border-bottom: 1px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        i{
+            font-weight: bold;
+        }
+
+        input{
+           width: 100px;
+           box-sizing: border-box;
+           outline: none;
+           border: 0;
+           -webkit-appearance: none;
+        }
+    }
+}
+
+//------------------------모바일 메뉴-------------
+.m-menu{
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    background-color: gray;
+    top: 0;
+    z-index: 1;
+    margin-left: -250px;
+}
+
+.close-btn{
+    width: 30px;
+    height: 30px;
+    font-size: 30px;
+    margin: 10px;
+    border: 1px solid black;
+
+    i{
+        vertical-align: top;
+    }
+}
+
+.show{
+    margin: 0;
+}
+
+@include mobile{
+    .menu{
+        display: none;
+    }
+
+    .m-menu{
+        display: block;
+    }
+}

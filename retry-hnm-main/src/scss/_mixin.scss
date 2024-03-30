@@ -1,0 +1,24 @@
+@import 'variable';
+
+@mixin font-style($color: #fff, $text-shadow:(-1px -1px 0 #000) (1px -1px 0 #000) (-1px 1px 0 #000) (1px 1px 0 #000)){
+    color: $color;
+    text-shadow: $text-shadow;
+}
+
+@mixin mobile{
+    @media (min-width: $mobile) and (max-width: $tablet){
+        @content;
+    }
+}
+
+@mixin tablet{
+    @media (min-width: $tablet) and (max-width: $desktop){
+        @content;
+    }
+}
+
+
+
+
+
+
