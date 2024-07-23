@@ -1,0 +1,22 @@
+.body {
+  min-height: 100vh;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+  gap: 30px;
+}
+
+.box {
+  border: 3px solid black;
+  width: 400px;
+  height: 400px;
+}
+
+.item-img {
+  width: 350px;
+  height: 200px;
+}
