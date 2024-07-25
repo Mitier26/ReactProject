@@ -1,0 +1,15 @@
+{
+    "posts": [
+      { "id": "1", "title": "html css강의", "views": 100 },
+      { "id": "2", "title": "자바스크립트 강의", "views": 200 },
+      { "id": "2", "title": "리액트 강의", "views": 200 },
+      { "id": "2", "title": "노도js 강의", "views": 200 }
+    ],
+    "comments": [
+      { "id": "1", "text": "a comment about post 1", "postId": "1" },
+      { "id": "2", "text": "another comment about post 1", "postId": "1" }
+    ],
+    "profile": {
+      "name": "typicode"
+    }
+  }
