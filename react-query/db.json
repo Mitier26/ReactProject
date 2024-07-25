@@ -6,10 +6,10 @@
       { "id": "2", "title": "노도js 강의", "views": 200 }
     ],
     "comments": [
-      { "id": "1", "text": "a comment about post 1", "postId": "1" },
-      { "id": "2", "text": "another comment about post 1", "postId": "1" }
+      { "id": "1", "title": "a comment about post 1", "postId": "1" },
+      { "id": "2", "title": "another comment about post 1", "postId": "1" }
     ],
     "profile": {
-      "name": "typicode"
+      "title": "typicode"
     }
   }
