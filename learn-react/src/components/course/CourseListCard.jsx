@@ -1,7 +1,8 @@
 import { CourseItem } from "./CourseItem";
 import Card from "../Card";
+import { Fragment } from "react";
 
-export default function CourseListCard({items}) {
+export default function CourseListCard({title,items}) {
 
   const [course1, course2, course3] = items;
 
@@ -25,11 +26,26 @@ export default function CourseListCard({items}) {
 
   return (
     <>
-      <Card title={'강의목록'}>
+      <Card title={title}>
         <div className="courses">
-          <CourseItem {...course1}/>
+
+          {items.map((item, index)=>{
+
+            const lastIndex = items.length -1 ;
+
+            return (
+              <Fragment  key={item.id}>
+                <CourseItem {...item}/>
+                {index !== lastIndex && <hr className="divider"/>}
+              </Fragment>
+            )
+          })}
+
+
+
+          {/* <CourseItem {...course1}/>
           <CourseItem {...course2}/>
-          <CourseItem {...course3}/>
+          <CourseItem {...course3}/> */}
         </div>
       </Card>
       {/* <div className="card">
