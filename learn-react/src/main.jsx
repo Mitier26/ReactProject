@@ -12,8 +12,8 @@ import AppCourse from './AppCourse.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     {/* <AppCounter /> */}
-    <AppTodo/>
+    {/* <AppTodo/> */}
     {/* <AppMovingDot/> */}
-    {/* <AppCourse/> */}
+    <AppCourse/>
   </React.StrictMode>
 )

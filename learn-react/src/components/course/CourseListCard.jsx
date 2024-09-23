@@ -2,7 +2,7 @@ import { CourseItem } from "./CourseItem";
 import Card from "../Card";
 import { Fragment } from "react";
 
-export default function CourseListCard({title,items}) {
+export default function CourseListCard({title,items, onFavorite}) {
 
   const [course1, course2, course3] = items;
 
@@ -35,7 +35,7 @@ export default function CourseListCard({title,items}) {
 
             return (
               <Fragment  key={item.id}>
-                <CourseItem {...item}/>
+                <CourseItem {...item} onFavorite={onFavorite}/>
                 {index !== lastIndex && <hr className="divider"/>}
               </Fragment>
             )

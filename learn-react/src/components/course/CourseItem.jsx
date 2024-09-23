@@ -34,14 +34,15 @@ function LinkIconBtn ({link}) {
   )
 }
 
-export const CourseItem = ({title, description, thumbnail, isFavorite, link}) => {
+export const CourseItem = ({id, title, description, thumbnail, isFavorite, link, onFavorite}) => {
 
   function handleFavorite(e) {
     // 이벤트 버블링 때문에 종아요만 클릭 되는 것이 아니고
     // 부모 요소까지 클릭이 된다.
     // 이렇게 되는 것을 막기위해 필요하다.
     e.stopPropagation();
-    alert(isFavorite ? '좋아요' : '모르겠어요');
+    // alert(isFavorite ? '좋아요' : '모르겠어요');
+    onFavorite(id, !isFavorite);
   }
 
   function handleItemClick(e) {
