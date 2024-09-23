@@ -8,8 +8,8 @@ import AppPure from './AppPure.jsx'
 import AppTodo from './AppTodo.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  // <React.StrictMode>
-    // <AppCounter />
-    <AppTodo/>
-  // </React.StrictMode>
+  <React.StrictMode>
+    <AppCounter />
+    {/* <AppTodo/> */}
+  </React.StrictMode>
 )
