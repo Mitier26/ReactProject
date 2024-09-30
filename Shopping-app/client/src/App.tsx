@@ -9,6 +9,27 @@ interface ProductType {
   price: number;
 }
 
+interface ProductItemProps {
+  product: ProductType;
+}
+
+const ProductItem = ({ product }: ProductItemProps) => {
+  const { id, name, price, explanation } = product;
+  const [isEditMode, setIsEditMode] = useState(false);
+
+  return (
+    <div>
+      <div>{id}</div>
+      <div>{name}</div>
+      <div>{explanation}</div>
+      <div>{price}</div>
+
+      <button onClick={() => console.log('delete')}>삭제하기</button>
+      <button onClick={() => console.log('수정')}>수정하기</button>
+    </div>
+  );
+};
+
 function App() {
   // 상품 객체
   // 제너레이터를 이용해 어떤 타입인지 정의 한다.
@@ -69,23 +90,8 @@ function App() {
         <input type="submit" value="상품 만들기" />
       </form>
 
-      {products.map(({ id, name, explanation, price }) => (
-        <div key={id}>
-          <div>{id}</div>
-          <div>{name}</div>
-          <div>{explanation}</div>
-          <div>{price}</div>
-          <button
-            type="button"
-            onClick={() => {
-              // 삭제를 하기 위해서는 무엇을 삭제 하는지 알아야 한다.
-              // 그리고 filter를 이용해 해당되는 것을 제외하고 남긴다.
-              setProducts(products.filter((product) => product.id !== id));
-            }}
-          >
-            삭제하기
-          </button>
-        </div>
+      {products.map((product) => (
+        <ProductItem key={product.id} product={product} />
       ))}
     </>
   );
