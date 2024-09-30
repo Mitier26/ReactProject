@@ -12,12 +12,16 @@ interface ProductType {
 interface ProductItemProps {
   product: ProductType;
   onDelete: (id: number) => void;
-  onUpdate: (id: number) => void;
+  onUpdate: (product: ProductType) => void;
 }
 
+// 화면에 표시되는 상품
 const ProductItem = ({ product, onDelete, onUpdate }: ProductItemProps) => {
   const { id, name, price, explanation } = product;
   const [isEditMode, setIsEditMode] = useState(false);
+  const [editName, setEditName] = useState(product.name);
+  const [editExplanation, setEditExplanation] = useState(product.explanation);
+  const [editPrice, setEditPrice] = useState(product.price);
 
   return (
     <div>
@@ -26,8 +30,46 @@ const ProductItem = ({ product, onDelete, onUpdate }: ProductItemProps) => {
       <div>{explanation}</div>
       <div>{price}</div>
 
+      {/* 
+        이것은 화면에 표시되는 것이다
+        onDelete와 onUpdate는 외부에서 가지고 온 것
+      */}
       <button onClick={() => onDelete(id)}>삭제하기</button>
-      <button onClick={() => onUpdate(id)}>수정하기</button>
+      <button onClick={() => setIsEditMode((prev) => !prev)}>수정하기</button>
+
+      {isEditMode && (
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+            onUpdate({
+              id,
+              name: editName,
+              explanation: editExplanation,
+              price: editPrice,
+            });
+          }}
+        >
+          <input
+            type="text"
+            placeholder="상품 이름"
+            value={editName}
+            onChange={(event) => setEditName(event.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="상품 설명"
+            value={editExplanation}
+            onChange={(event) => setEditExplanation(event.target.value)}
+          />
+          <input
+            type="number"
+            placeholder="상품 가격"
+            value={editPrice}
+            onChange={(event) => setEditPrice(parseInt(event.target.value, 10))}
+          />
+          <input type="submit" value="상품 수정하기" />
+        </form>
+      )}
     </div>
   );
 };
@@ -66,17 +108,12 @@ function App() {
     // {} 객체에 추가하는 것
   };
 
+  // 삭제 하기 상품을 다시 만드는데 filter를 이용해 특정 id만 빼고 다시 저장한다.
   const handleDelete = (id: number) => setProducts(products.filter((product) => product.id !== id));
 
-  const handleUpdate = (id: number) => {
-    const updateProduct = {
-      id,
-      name: '수정된 상품',
-      explanation: '수정된 설명',
-      price: 0,
-    };
-
-    setProducts(products.map((product) => (product.id === id ? updateProduct : product)));
+  const handleUpdate = (updateProduct: { id: number; name: string; explanation: string; price: number }) => {
+    // 상품 수정을 위한 객체를 만든다
+    setProducts(products.map((product) => (product.id === updateProduct.id ? updateProduct : product)));
   };
 
   return (
@@ -104,6 +141,8 @@ function App() {
       </form>
 
       {products.map((product) => (
+        // 화면에 그려지는 것을 여기에서 만든다.
+        // 삭제기능과 수정기능을 추가했다. 함수를 연결
         <ProductItem key={product.id} product={product} onDelete={handleDelete} onUpdate={handleUpdate} />
       ))}
     </>
