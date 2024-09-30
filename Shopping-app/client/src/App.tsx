@@ -1,6 +1,7 @@
 import './App.css';
 import { useState, useRef } from 'react';
 
+// 상품의 데이터를 정의한다.
 interface ProductType {
   id: number;
   name: string;
@@ -9,6 +10,8 @@ interface ProductType {
 }
 
 function App() {
+  // 상품 객체
+  // 제너레이터를 이용해 어떤 타입인지 정의 한다.
   const [products, setProducts] = useState<ProductType[]>([
     {
       id: 0,
@@ -19,6 +22,8 @@ function App() {
     },
   ]);
 
+  // 상품을 등록하기 위해 필요한 변수
+  // useState와 onChange를 이용해 값이 변하면 입력되도록 한다.
   const [name, setName] = useState('');
   const [explanation, setExplanation] = useState('');
   const [price, setPrice] = useState(0);
@@ -64,12 +69,22 @@ function App() {
         <input type="submit" value="상품 만들기" />
       </form>
 
-      {products.map((product) => (
-        <div key={product.id}>
-          <div>{product.id}</div>
-          <div>{product.name}</div>
-          <div>{product.explanation}</div>
-          <div>{product.price}</div>
+      {products.map(({ id, name, explanation, price }) => (
+        <div key={id}>
+          <div>{id}</div>
+          <div>{name}</div>
+          <div>{explanation}</div>
+          <div>{price}</div>
+          <button
+            type="button"
+            onClick={() => {
+              // 삭제를 하기 위해서는 무엇을 삭제 하는지 알아야 한다.
+              // 그리고 filter를 이용해 해당되는 것을 제외하고 남긴다.
+              setProducts(products.filter((product) => product.id !== id));
+            }}
+          >
+            삭제하기
+          </button>
         </div>
       ))}
     </>
