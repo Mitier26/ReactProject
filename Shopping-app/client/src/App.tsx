@@ -11,9 +11,11 @@ interface ProductType {
 
 interface ProductItemProps {
   product: ProductType;
+  onDelete: (id: number) => void;
+  onUpdate: (id: number) => void;
 }
 
-const ProductItem = ({ product }: ProductItemProps) => {
+const ProductItem = ({ product, onDelete, onUpdate }: ProductItemProps) => {
   const { id, name, price, explanation } = product;
   const [isEditMode, setIsEditMode] = useState(false);
 
@@ -24,8 +26,8 @@ const ProductItem = ({ product }: ProductItemProps) => {
       <div>{explanation}</div>
       <div>{price}</div>
 
-      <button onClick={() => console.log('delete')}>삭제하기</button>
-      <button onClick={() => console.log('수정')}>수정하기</button>
+      <button onClick={() => onDelete(id)}>삭제하기</button>
+      <button onClick={() => onUpdate(id)}>수정하기</button>
     </div>
   );
 };
@@ -64,7 +66,18 @@ function App() {
     // {} 객체에 추가하는 것
   };
 
-  console.log(products);
+  const handleDelete = (id: number) => setProducts(products.filter((product) => product.id !== id));
+
+  const handleUpdate = (id: number) => {
+    const updateProduct = {
+      id,
+      name: '수정된 상품',
+      explanation: '수정된 설명',
+      price: 0,
+    };
+
+    setProducts(products.map((product) => (product.id === id ? updateProduct : product)));
+  };
 
   return (
     <>
@@ -91,7 +104,7 @@ function App() {
       </form>
 
       {products.map((product) => (
-        <ProductItem key={product.id} product={product} />
+        <ProductItem key={product.id} product={product} onDelete={handleDelete} onUpdate={handleUpdate} />
       ))}
     </>
   );
